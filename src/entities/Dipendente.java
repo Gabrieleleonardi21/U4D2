@@ -33,4 +33,8 @@ public class Dipendente {
                 + ", stipendio="+ stipendio
                 +", dipartimento=" + dipartimento + "}";
     }
+
+    public double calcolaStipendio(){
+        return stipendio;
+    }
 }
