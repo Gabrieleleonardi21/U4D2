@@ -1,5 +1,6 @@
 package entities;
 
+import exeptions.DatiDipendenteNonValidiExeption;
 import interfaces.Turnabile;
 
 public abstract class Dipendente implements Turnabile {
@@ -8,6 +9,12 @@ public abstract class Dipendente implements Turnabile {
     private Dipartimento dipartimento;
 
     protected Dipendente(String matricola, double stipendio, Dipartimento dipartimento){
+        if (matricola == null || matricola.isBlank()){
+            throw new DatiDipendenteNonValidiExeption("La matricola non può essere nulla o vuota");
+        } if (stipendio<= 0){
+            throw new DatiDipendenteNonValidiExeption("Stipendio non valido: " + stipendio + ". Deve essere maggiore di zero");
+        }
+
         this.matricola = matricola;
         this.stipendio = stipendio;
         this.dipartimento = dipartimento;

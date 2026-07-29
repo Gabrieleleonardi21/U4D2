@@ -1,4 +1,5 @@
 import entities.*;
+import exeptions.DatiDipendenteNonValidiExeption;
 import interfaces.Turnabile;
 
 public class Main {
@@ -6,7 +7,7 @@ public class Main {
         // Array polimorfico: ogni elemento è un sottotipo di Dipendente
         Dipendente[] dipendenti = {
                 new DipendenteFullTime("111", 2000.00, Dipartimento.PRODUZIONE, 5),
-                new DipendentePartTime("222", 0, Dipartimento.VENDITE, 80, 12.50),
+                new DipendentePartTime("222", 500, Dipartimento.VENDITE, 80, 12.50),
                 new Dirigente("333", 5000.00, Dipartimento.AMMINISTRAZIONE, 20),
         };
 
@@ -23,7 +24,7 @@ public class Main {
 
         Turnabile[] personale = {
                 new DipendenteFullTime("123",2000.00,Dipartimento.PRODUZIONE,5),
-                new DipendentePartTime("234",0,Dipartimento.VENDITE,140,12.50),
+                new DipendentePartTime("234",500,Dipartimento.VENDITE,140,12.50),
                 new Volontario("Pippo",30,"Venditore Amazon"),
                 new Volontario("Minnie", 26, "BusinessLady"),
         };
@@ -31,6 +32,20 @@ public class Main {
             t.checkIn();
         }
 
+        //dati non validi
+        try {
+            Dipendente errato = new DipendenteFullTime("", -5,Dipartimento.VENDITE,3);
+            System.out.println("Creato " + errato.getMatricola());
+        } catch (DatiDipendenteNonValidiExeption e){
+            System.out.println("Impossibile creare il dipendente: " + e.getMessage());
+        }
+        //dati validi
+        try {
+            Dipendente corretto = new DipendenteFullTime("144",20.0,Dipartimento.PRODUZIONE,6);
+            System.out.println("Dipendente creato. Stipendio: " + corretto.getMatricola() + corretto.calcolaStipendio());
+        } catch (DatiDipendenteNonValidiExeption e){
+            System.out.println("impossibile creare il dipendente: " + e.getMessage());
+        }
 
 
 
