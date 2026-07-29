@@ -41,8 +41,8 @@ public class Main {
         }
         //dati validi
         try {
-            Dipendente corretto = new DipendenteFullTime("144",20.0,Dipartimento.PRODUZIONE,6);
-            System.out.println("Dipendente creato. Stipendio: " + corretto.getMatricola() + corretto.calcolaStipendio());
+            Dipendente corretto = new DipendenteFullTime("144",2000.00,Dipartimento.PRODUZIONE,6);
+            System.out.println("Dipendente creato matricola: "+ corretto.getMatricola() + " Stipendio: " + corretto.calcolaStipendio());
         } catch (DatiDipendenteNonValidiExeption e){
             System.out.println("impossibile creare il dipendente: " + e.getMessage());
         }
